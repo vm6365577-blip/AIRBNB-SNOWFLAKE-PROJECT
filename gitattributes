@@ -1,0 +1,9 @@
+# Exclude everything from GitHub's Languages stats (linguist)
+* linguist-vendored
+*.py linguist-vendored
+*.svg linguist-vendored
+*.md linguist-documentation
+docs/* linguist-documentation
+Airbnb_Dashboard/* linguist-documentation
+aws_dbt_snowflake_project/* linguist-vendored
+src/* linguist-vendored
