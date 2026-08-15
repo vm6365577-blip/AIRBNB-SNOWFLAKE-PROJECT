@@ -1,0 +1,136 @@
+<svg viewBox="0 0 1600 620" xmlns="http://www.w3.org/2000/svg" font-family="Cascadia Code, Consolas, Segoe UI, monospace">
+  <defs>
+    <filter id="agGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="agArrow" markerWidth="9" markerHeight="9" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="#4B5878"/>
+    </marker>
+    <style>
+      .grp-title { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+      .node-title { font-size: 13px; font-weight: 700; fill: #F5F7FA; }
+      .node-sub { font-size: 10.5px; fill: #9CA8C4; }
+      .pulse { animation: pulseGlow 2.8s ease-in-out infinite; }
+      @keyframes pulseGlow { 0%{opacity:.75;} 50%{opacity:1;} 100%{opacity:.75;} }
+    </style>
+  </defs>
+
+  <rect width="1600" height="620" rx="18" fill="#0B0F19" stroke="#1F2A44"/>
+  <text x="30" y="34" font-size="13" fill="#00E5FF" letter-spacing="1px">$ dbt build   —   full architecture</text>
+
+  <!-- ===== Column 1: S3 ===== -->
+  <text class="grp-title" x="30" y="90" fill="#00E5FF">🪣 AWS S3 — DATA LAKE</text>
+  <g class="pulse" filter="url(#agGlow)">
+    <rect x="30" y="105" width="180" height="150" rx="12" fill="none" stroke="#00E5FF" stroke-width="1.5"/>
+    <text class="node-title" x="50" y="132">Raw bucket</text>
+    <text class="node-sub" x="50" y="154">listings.csv</text>
+    <text class="node-sub" x="50" y="171">bookings.csv</text>
+    <text class="node-sub" x="50" y="188">hosts.csv</text>
+    <text class="node-sub" x="50" y="212">IAM-scoped access</text>
+    <text class="node-sub" x="50" y="228">read-only role</text>
+  </g>
+
+  <path d="M215,180 L260,180" stroke="#4B5878" stroke-width="2" marker-end="url(#agArrow)"/>
+  <circle r="4.5" fill="#00E5FF"><animateMotion dur="1.5s" repeatCount="indefinite" path="M215,180 L260,180"/></circle>
+
+  <!-- ===== Column 2: Snowflake staging ===== -->
+  <text class="grp-title" x="265" y="90" fill="#FFB300">❄ SNOWFLAKE — INGESTION</text>
+  <g class="pulse" filter="url(#agGlow)" style="animation-delay:.15s;">
+    <rect x="265" y="105" width="220" height="150" rx="12" fill="none" stroke="#FFB300" stroke-width="1.5"/>
+    <text class="node-title" x="285" y="132">External Stage</text>
+    <text class="node-sub" x="285" y="154">SNOW_STAGE</text>
+    <text class="node-sub" x="285" y="176">CSV_FORMAT file format</text>
+    <text class="node-sub" x="285" y="198">COPY INTO → STAGING</text>
+    <text class="node-sub" x="285" y="220">Storage Integration (IAM role)</text>
+  </g>
+
+  <path d="M490,180 L535,180" stroke="#4B5878" stroke-width="2" marker-end="url(#agArrow)"/>
+  <circle r="4.5" fill="#FFB300"><animateMotion dur="1.6s" begin=".2s" repeatCount="indefinite" path="M490,180 L535,180"/></circle>
+
+  <!-- ===== Column 3: Bronze ===== -->
+  <text class="grp-title" x="540" y="90" fill="#FF3EA5">🥉 BRONZE — dbt CORE</text>
+  <g class="pulse" filter="url(#agGlow)" style="animation-delay:.3s;">
+    <rect x="540" y="105" width="230" height="170" rx="12" fill="none" stroke="#FF3EA5" stroke-width="1.5"/>
+    <text class="node-title" x="560" y="132">sources.yml</text>
+    <text class="node-sub" x="560" y="154">DAG lineage from STAGING</text>
+    <text class="node-sub" x="560" y="176">is_incremental()</text>
+    <text class="node-sub" x="560" y="193">watermark: created_at</text>
+    <text class="node-sub" x="560" y="215">generate_schema_name macro</text>
+    <text class="node-sub" x="560" y="232">→ clean BRONZE schema</text>
+    <text class="node-sub" x="560" y="254">no default target prefix</text>
+  </g>
+
+  <path d="M775,190 L820,190" stroke="#4B5878" stroke-width="2" marker-end="url(#agArrow)"/>
+  <circle r="4.5" fill="#FF3EA5"><animateMotion dur="1.6s" begin=".4s" repeatCount="indefinite" path="M775,190 L820,190"/></circle>
+
+  <!-- ===== Column 4: Silver ===== -->
+  <text class="grp-title" x="825" y="90" fill="#B6FF3C">🥈 SILVER — CONFORMED</text>
+  <g class="pulse" filter="url(#agGlow)" style="animation-delay:.45s;">
+    <rect x="825" y="90" width="240" height="200" rx="12" fill="none" stroke="#B6FF3C" stroke-width="1.5"/>
+    <text class="node-title" x="845" y="118">Incremental merge/upsert</text>
+    <text class="node-sub" x="845" y="140">unique_key: booking_id</text>
+    <text class="node-sub" x="845" y="157">listing_id · host_id</text>
+    <text class="node-sub" x="845" y="179">macro: multiply() — precision</text>
+    <text class="node-sub" x="845" y="196">macro: tag() — price tier</text>
+    <text class="node-sub" x="845" y="213">low / medium / high</text>
+    <text class="node-sub" x="845" y="235">sanitize + case transform</text>
+    <text class="node-sub" x="845" y="252">CASE WHEN status categorization</text>
+  </g>
+
+  <path d="M1070,190 L1115,190" stroke="#4B5878" stroke-width="2" marker-end="url(#agArrow)"/>
+  <circle r="4.5" fill="#B6FF3C"><animateMotion dur="1.6s" begin=".6s" repeatCount="indefinite" path="M1070,190 L1115,190"/></circle>
+
+  <!-- ===== Column 5: Gold (split OBT + Star) ===== -->
+  <text class="grp-title" x="1120" y="90" fill="#7C6FF0">🥇 GOLD — CONSUMPTION</text>
+
+  <g class="pulse" filter="url(#agGlow)" style="animation-delay:.6s;">
+    <rect x="1120" y="105" width="230" height="90" rx="12" fill="none" stroke="#7C6FF0" stroke-width="1.5"/>
+    <text class="node-title" x="1140" y="130">OBT</text>
+    <text class="node-sub" x="1140" y="150">Metadata-driven joins</text>
+    <text class="node-sub" x="1140" y="167">Jinja dict/list → compiled SQL</text>
+    <text class="node-sub" x="1140" y="184">no hardcoded JOINs</text>
+  </g>
+
+  <g class="pulse" filter="url(#agGlow)" style="animation-delay:.75s;">
+    <rect x="1120" y="205" width="230" height="140" rx="12" fill="none" stroke="#7C6FF0" stroke-width="1.5"/>
+    <text class="node-title" x="1140" y="228">Star Schema</text>
+    <text class="node-sub" x="1140" y="248">ephemeral/ CTE models</text>
+    <text class="node-sub" x="1140" y="265">dim_bookings · dim_hosts</text>
+    <text class="node-sub" x="1140" y="282">dim_listings (SCD-2 snapshot)</text>
+    <text class="node-sub" x="1140" y="299">dbt_valid_from / dbt_valid_to</text>
+    <text class="node-sub" x="1140" y="316">fact_table + surrogate keys</text>
+    <text class="node-sub" x="1140" y="333">metrics: amount, fees, ratings</text>
+  </g>
+
+  <path d="M1355,150 L1395,150" stroke="#4B5878" stroke-width="2" marker-end="url(#agArrow)"/>
+  <path d="M1355,275 L1395,275" stroke="#4B5878" stroke-width="2" marker-end="url(#agArrow)"/>
+
+  <!-- ===== Column 6: Tests / CI ===== -->
+  <text class="grp-title" x="1400" y="90" fill="#00E5FF">✅ QUALITY &amp; RELEASE</text>
+  <g class="pulse" filter="url(#agGlow)" style="animation-delay:.9s;">
+    <rect x="1400" y="105" width="170" height="240" rx="12" fill="none" stroke="#00E5FF" stroke-width="1.5"/>
+    <text class="node-title" x="1420" y="132">dbt test</text>
+    <text class="node-sub" x="1420" y="154">source_tests.sql</text>
+    <text class="node-sub" x="1420" y="171">amount threshold checks</text>
+    <text class="node-sub" x="1420" y="193">severity: warn</text>
+    <text class="node-sub" x="1420" y="210">severity: error</text>
+    <text class="node-sub" x="1420" y="232">dbt build (run+test+snapshot)</text>
+    <text class="node-sub" x="1420" y="254">git feature-branch → main</text>
+    <text class="node-sub" x="1420" y="276">VS Code + dbt Power User</text>
+  </g>
+
+  <!-- Bottom stage labels -->
+  <line x1="30" y1="410" x2="1570" y2="410" stroke="#1F2A44" stroke-width="1"/>
+  <text x="120" y="440" text-anchor="middle" font-size="11" fill="#6B7896">1 · Land</text>
+  <text x="375" y="440" text-anchor="middle" font-size="11" fill="#6B7896">2 · Stage &amp; Load</text>
+  <text x="655" y="440" text-anchor="middle" font-size="11" fill="#6B7896">3 · Ingest (Bronze)</text>
+  <text x="945" y="440" text-anchor="middle" font-size="11" fill="#6B7896">4 · Conform (Silver)</text>
+  <text x="1235" y="440" text-anchor="middle" font-size="11" fill="#6B7896">5 · Model &amp; Serve (Gold)</text>
+  <text x="1485" y="440" text-anchor="middle" font-size="11" fill="#6B7896">6 · Test &amp; Ship</text>
+
+  <text x="800" y="480" text-anchor="middle" font-size="12" fill="#9CA8C4">S3 → Snowflake Staging → Bronze → Silver → Gold (OBT + Star Schema) → Tests &amp; CI</text>
+</svg>

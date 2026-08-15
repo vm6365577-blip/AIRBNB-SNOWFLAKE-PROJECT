@@ -1,58 +1,66 @@
-<svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" font-family="Cascadia Code, Consolas, Segoe UI, monospace">
   <defs>
+    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#4B5878"/>
+    </marker>
     <style>
       .layer-label { font-size: 16px; font-weight: 700; }
-      .layer-sub { font-size: 12px; opacity: 0.9; }
+      .layer-sub { font-size: 11px; fill: #9CA8C4; }
     </style>
   </defs>
-  <rect width="900" height="220" fill="#0d1117"/>
+  <rect width="900" height="240" rx="16" fill="#0B0F19" stroke="#1F2A44"/>
 
   <!-- Bronze -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.05;0.2;1" dur="4s" repeatCount="indefinite"/>
-    <rect x="40" y="60" width="230" height="110" rx="12" fill="#CD7F32"/>
-    <text class="layer-label" x="155" y="105" text-anchor="middle" fill="#ffffff">BRONZE</text>
-    <text class="layer-sub" x="155" y="128" text-anchor="middle" fill="#ffffff">Raw Landing Zone</text>
-    <text class="layer-sub" x="155" y="146" text-anchor="middle" fill="#ffffff">Data Quality Checks</text>
+  <g opacity="0" filter="url(#glow2)">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.05;0.2;1" dur="4.5s" repeatCount="indefinite"/>
+    <rect x="35" y="55" width="235" height="130" rx="12" fill="none" stroke="#FF3EA5" stroke-width="1.5"/>
+    <text class="layer-label" x="152" y="88" text-anchor="middle" fill="#FF3EA5">BRONZE</text>
+    <text class="layer-sub" x="152" y="110" text-anchor="middle">sources.yml lineage</text>
+    <text class="layer-sub" x="152" y="126" text-anchor="middle">is_incremental() on created_at</text>
+    <text class="layer-sub" x="152" y="142" text-anchor="middle">generate_schema_name macro</text>
+    <text class="layer-sub" x="152" y="158" text-anchor="middle">Clean BRONZE schema routing</text>
   </g>
 
-  <!-- arrow 1 -->
   <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.22;0.32;1" dur="4s" repeatCount="indefinite"/>
-    <path d="M280,115 L330,115" stroke="#8b949e" stroke-width="3" marker-end="url(#arrow)"/>
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.22;0.32;1" dur="4.5s" repeatCount="indefinite"/>
+    <path d="M280,120 L325,120" stroke="#4B5878" stroke-width="2.5" marker-end="url(#arrow2)"/>
   </g>
 
   <!-- Silver -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.32;0.5;1" dur="4s" repeatCount="indefinite"/>
-    <rect x="335" y="60" width="230" height="110" rx="12" fill="#C0C0C0"/>
-    <text class="layer-label" x="450" y="98" text-anchor="middle" fill="#252423">SILVER</text>
-    <text class="layer-sub" x="450" y="121" text-anchor="middle" fill="#252423">One Big Table (OBT)</text>
-    <text class="layer-sub" x="450" y="139" text-anchor="middle" fill="#252423">Metadata-Driven Transforms</text>
-    <text class="layer-sub" x="450" y="157" text-anchor="middle" fill="#252423">Audit &amp; Logging</text>
+  <g opacity="0" filter="url(#glow2)">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.32;0.5;1" dur="4.5s" repeatCount="indefinite"/>
+    <rect x="332" y="45" width="235" height="150" rx="12" fill="none" stroke="#B6FF3C" stroke-width="1.5"/>
+    <text class="layer-label" x="449" y="76" text-anchor="middle" fill="#B6FF3C">SILVER</text>
+    <text class="layer-sub" x="449" y="98" text-anchor="middle">Incremental merge/upsert</text>
+    <text class="layer-sub" x="449" y="114" text-anchor="middle">unique_key: booking/listing/host</text>
+    <text class="layer-sub" x="449" y="130" text-anchor="middle">macros: multiply(), tag()</text>
+    <text class="layer-sub" x="449" y="146" text-anchor="middle">Sanitize · case transform</text>
+    <text class="layer-sub" x="449" y="162" text-anchor="middle">CASE WHEN status categorization</text>
   </g>
 
-  <!-- arrow 2 -->
   <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.62;1" dur="4s" repeatCount="indefinite"/>
-    <path d="M575,115 L625,115" stroke="#8b949e" stroke-width="3" marker-end="url(#arrow)"/>
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.62;1" dur="4.5s" repeatCount="indefinite"/>
+    <path d="M577,120 L622,120" stroke="#4B5878" stroke-width="2.5" marker-end="url(#arrow2)"/>
   </g>
 
   <!-- Gold -->
-  <g opacity="0">
-    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.8;1" dur="4s" repeatCount="indefinite"/>
-    <rect x="630" y="60" width="230" height="110" rx="12" fill="#D9B300"/>
-    <text class="layer-label" x="745" y="98" text-anchor="middle" fill="#252423">GOLD</text>
-    <text class="layer-sub" x="745" y="121" text-anchor="middle" fill="#252423">Star Schema · SCD Type 2</text>
-    <text class="layer-sub" x="745" y="139" text-anchor="middle" fill="#252423">Row-Level Security</text>
-    <text class="layer-sub" x="745" y="157" text-anchor="middle" fill="#252423">Power BI Ready</text>
+  <g opacity="0" filter="url(#glow2)">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.8;1" dur="4.5s" repeatCount="indefinite"/>
+    <rect x="629" y="35" width="235" height="170" rx="12" fill="none" stroke="#7C6FF0" stroke-width="1.5"/>
+    <text class="layer-label" x="746" y="65" text-anchor="middle" fill="#7C6FF0">GOLD</text>
+    <text class="layer-sub" x="746" y="87" text-anchor="middle">OBT · metadata-driven joins</text>
+    <text class="layer-sub" x="746" y="103" text-anchor="middle">Star Schema + ephemeral/ CTEs</text>
+    <text class="layer-sub" x="746" y="119" text-anchor="middle">dim_* via SCD-2 snapshots</text>
+    <text class="layer-sub" x="746" y="135" text-anchor="middle">dbt_valid_from / dbt_valid_to</text>
+    <text class="layer-sub" x="746" y="151" text-anchor="middle">fact_table + surrogate keys</text>
   </g>
 
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#8b949e"/>
-    </marker>
-  </defs>
-
-  <text x="450" y="205" text-anchor="middle" font-size="12" fill="#8b949e">Medallion Architecture — Bronze → Silver → Gold</text>
+  <text x="450" y="222" text-anchor="middle" font-size="11" fill="#6B7896">dbt Core Medallion Architecture — Bronze → Silver → Gold</text>
 </svg>
