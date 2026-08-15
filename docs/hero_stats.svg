@@ -1,0 +1,85 @@
+<svg viewBox="0 0 1200 380" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#12193b"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#12239E"/>
+      <stop offset="100%" stop-color="#118DFF"/>
+    </linearGradient>
+    <style>
+      .tile { rx: 16; stroke-width: 1.5; }
+      .tile-label { font-size: 13px; fill: #9aa4b2; letter-spacing: 0.5px; }
+      .tile-value { font-size: 30px; font-weight: 800; fill: #ffffff; }
+      .pulse { animation: pulseGlow 3s ease-in-out infinite; }
+      @keyframes pulseGlow {
+        0%   { opacity: 0.85; }
+        50%  { opacity: 1; }
+        100% { opacity: 0.85; }
+      }
+      .bar { animation: growBar 2.2s ease-out forwards; }
+      @keyframes growBar {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
+    </style>
+  </defs>
+
+  <rect width="1200" height="380" rx="20" fill="url(#bgGrad)" stroke="#22283a"/>
+
+  <!-- Title -->
+  <text x="40" y="55" font-size="24" font-weight="700" fill="#ffffff">Airbnb Performance — At a Glance</text>
+  <text x="40" y="80" font-size="13" fill="#8b949e">Live metrics from the Gold-layer Star Schema, surfaced in Power BI</text>
+
+  <!-- Stat tiles -->
+  <g class="pulse">
+    <rect class="tile" x="40" y="105" width="255" height="110" fill="#151b2e" stroke="#2a3352"/>
+    <text class="tile-label" x="60" y="135">TOTAL REVENUE</text>
+    <text class="tile-value" x="60" y="180">62.53M</text>
+    <rect x="60" y="195" width="215" height="6" rx="3" fill="#22283a"/>
+    <rect x="60" y="195" width="215" height="6" rx="3" fill="#118DFF" class="bar" style="transform-origin: 60px 198px;"/>
+  </g>
+
+  <g class="pulse">
+    <rect class="tile" x="315" y="105" width="255" height="110" fill="#151b2e" stroke="#2a3352"/>
+    <text class="tile-label" x="335" y="135">TOTAL BOOKINGS</text>
+    <text class="tile-value" x="335" y="180">5K</text>
+    <rect x="335" y="195" width="215" height="6" rx="3" fill="#22283a"/>
+    <rect x="335" y="195" width="150" height="6" rx="3" fill="#D9B300" class="bar" style="transform-origin: 335px 198px;"/>
+  </g>
+
+  <g class="pulse">
+    <rect class="tile" x="590" y="105" width="255" height="110" fill="#151b2e" stroke="#2a3352"/>
+    <text class="tile-label" x="610" y="135">TOTAL LISTINGS</text>
+    <text class="tile-value" x="610" y="180">500</text>
+    <rect x="610" y="195" width="215" height="6" rx="3" fill="#22283a"/>
+    <rect x="610" y="195" width="120" height="6" rx="3" fill="#59A472" class="bar" style="transform-origin: 610px 198px;"/>
+  </g>
+
+  <g class="pulse">
+    <rect class="tile" x="865" y="105" width="255" height="110" fill="#151b2e" stroke="#2a3352"/>
+    <text class="tile-label" x="885" y="135">TOTAL HOSTS</text>
+    <text class="tile-value" x="885" y="180">189</text>
+    <rect x="885" y="195" width="215" height="6" rx="3" fill="#22283a"/>
+    <rect x="885" y="195" width="90" height="6" rx="3" fill="#E66C37" class="bar" style="transform-origin: 885px 198px;"/>
+  </g>
+
+  <!-- Revenue by property type mini bars -->
+  <text x="40" y="255" font-size="13" fill="#9aa4b2" letter-spacing="0.5px">REVENUE BY PROPERTY TYPE</text>
+
+  <text x="40" y="285" font-size="12" fill="#c9d1d9">House</text>
+  <rect x="120" y="273" width="1040" height="14" rx="7" fill="#22283a"/>
+  <rect x="120" y="273" width="360" height="14" rx="7" fill="url(#accentGrad)" class="bar" style="transform-origin: 120px 280px;"/>
+  <text x="1090" y="285" font-size="12" fill="#c9d1d9" text-anchor="end">21.5M</text>
+
+  <text x="40" y="315" font-size="12" fill="#c9d1d9">Condo</text>
+  <rect x="120" y="303" width="1040" height="14" rx="7" fill="#22283a"/>
+  <rect x="120" y="303" width="353" height="14" rx="7" fill="url(#accentGrad)" class="bar" style="transform-origin: 120px 310px;"/>
+  <text x="1090" y="315" font-size="12" fill="#c9d1d9" text-anchor="end">21.1M</text>
+
+  <text x="40" y="345" font-size="12" fill="#c9d1d9">Apartment</text>
+  <rect x="120" y="333" width="1040" height="14" rx="7" fill="#22283a"/>
+  <rect x="120" y="333" width="332" height="14" rx="7" fill="url(#accentGrad)" class="bar" style="transform-origin: 120px 340px;"/>
+  <text x="1090" y="345" font-size="12" fill="#c9d1d9" text-anchor="end">19.9M</text>
+</svg>
