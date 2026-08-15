@@ -1,0 +1,58 @@
+<svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .layer-label { font-size: 16px; font-weight: 700; }
+      .layer-sub { font-size: 12px; opacity: 0.9; }
+    </style>
+  </defs>
+  <rect width="900" height="220" fill="#0d1117"/>
+
+  <!-- Bronze -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.05;0.2;1" dur="4s" repeatCount="indefinite"/>
+    <rect x="40" y="60" width="230" height="110" rx="12" fill="#CD7F32"/>
+    <text class="layer-label" x="155" y="105" text-anchor="middle" fill="#ffffff">BRONZE</text>
+    <text class="layer-sub" x="155" y="128" text-anchor="middle" fill="#ffffff">Raw Landing Zone</text>
+    <text class="layer-sub" x="155" y="146" text-anchor="middle" fill="#ffffff">Data Quality Checks</text>
+  </g>
+
+  <!-- arrow 1 -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.22;0.32;1" dur="4s" repeatCount="indefinite"/>
+    <path d="M280,115 L330,115" stroke="#8b949e" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Silver -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.32;0.5;1" dur="4s" repeatCount="indefinite"/>
+    <rect x="335" y="60" width="230" height="110" rx="12" fill="#C0C0C0"/>
+    <text class="layer-label" x="450" y="98" text-anchor="middle" fill="#252423">SILVER</text>
+    <text class="layer-sub" x="450" y="121" text-anchor="middle" fill="#252423">One Big Table (OBT)</text>
+    <text class="layer-sub" x="450" y="139" text-anchor="middle" fill="#252423">Metadata-Driven Transforms</text>
+    <text class="layer-sub" x="450" y="157" text-anchor="middle" fill="#252423">Audit &amp; Logging</text>
+  </g>
+
+  <!-- arrow 2 -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.52;0.62;1" dur="4s" repeatCount="indefinite"/>
+    <path d="M575,115 L625,115" stroke="#8b949e" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Gold -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.8;1" dur="4s" repeatCount="indefinite"/>
+    <rect x="630" y="60" width="230" height="110" rx="12" fill="#D9B300"/>
+    <text class="layer-label" x="745" y="98" text-anchor="middle" fill="#252423">GOLD</text>
+    <text class="layer-sub" x="745" y="121" text-anchor="middle" fill="#252423">Star Schema · SCD Type 2</text>
+    <text class="layer-sub" x="745" y="139" text-anchor="middle" fill="#252423">Row-Level Security</text>
+    <text class="layer-sub" x="745" y="157" text-anchor="middle" fill="#252423">Power BI Ready</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#8b949e"/>
+    </marker>
+  </defs>
+
+  <text x="450" y="205" text-anchor="middle" font-size="12" fill="#8b949e">Medallion Architecture — Bronze → Silver → Gold</text>
+</svg>

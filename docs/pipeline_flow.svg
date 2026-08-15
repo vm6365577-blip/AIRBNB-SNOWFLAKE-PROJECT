@@ -1,0 +1,89 @@
+<svg viewBox="0 0 1500 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .stage-box { rx: 14; stroke-width: 2; }
+      .stage-label { font-size: 20px; font-weight: 700; fill: #ffffff; }
+      .stage-sub { font-size: 12px; fill: #ffffff; opacity: 0.85; }
+      .arrow-line { stroke: #B3B0AD; stroke-width: 2; }
+      .pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
+      @keyframes pulseGlow {
+        0%   { filter: drop-shadow(0 0 0px currentColor); }
+        50%  { filter: drop-shadow(0 0 10px currentColor); }
+        100% { filter: drop-shadow(0 0 0px currentColor); }
+      }
+    </style>
+  </defs>
+
+  <rect width="1500" height="320" fill="#0d1117"/>
+
+  <!-- Stage boxes -->
+  <!-- S3 -->
+  <g class="pulse" style="color:#FF9900;">
+    <rect class="stage-box" x="20" y="110" width="180" height="100" fill="#FF9900" stroke="#CC7A00"/>
+    <text class="stage-label" x="110" y="150" text-anchor="middle">AWS S3</text>
+    <text class="stage-sub" x="110" y="172" text-anchor="middle">Raw CSVs / Staging</text>
+  </g>
+
+  <!-- Snowflake Bronze -->
+  <g class="pulse" style="color:#29B5E8;">
+    <rect class="stage-box" x="270" y="110" width="200" height="100" fill="#29B5E8" stroke="#1B8FBD"/>
+    <text class="stage-label" x="370" y="145" text-anchor="middle">Snowflake</text>
+    <text class="stage-sub" x="370" y="165" text-anchor="middle">Bronze Layer</text>
+    <text class="stage-sub" x="370" y="182" text-anchor="middle">Data Quality Checks</text>
+  </g>
+
+  <!-- dbt OBT + Metadata -->
+  <g class="pulse" style="color:#FF694B;">
+    <rect class="stage-box" x="540" y="90" width="230" height="140" fill="#FF694B" stroke="#D6553B"/>
+    <text class="stage-label" x="655" y="120" text-anchor="middle">dbt</text>
+    <text class="stage-sub" x="655" y="142" text-anchor="middle">One Big Table (OBT)</text>
+    <text class="stage-sub" x="655" y="160" text-anchor="middle">YAML-Driven Pipeline</text>
+    <text class="stage-sub" x="655" y="178" text-anchor="middle">Audit &amp; Logging</text>
+    <text class="stage-sub" x="655" y="196" text-anchor="middle">Metadata-Driven</text>
+  </g>
+
+  <!-- Star Schema + Security -->
+  <g class="pulse" style="color:#D9B300;">
+    <rect class="stage-box" x="840" y="90" width="230" height="140" fill="#D9B300" stroke="#B39400"/>
+    <text class="stage-label" x="955" y="122" text-anchor="middle" fill="#252423">Star Schema</text>
+    <text class="stage-sub" x="955" y="145" text-anchor="middle" fill="#252423">Fact + Dimension Tables</text>
+    <text class="stage-sub" x="955" y="163" text-anchor="middle" fill="#252423">SCD Type 2</text>
+    <text class="stage-sub" x="955" y="181" text-anchor="middle" fill="#252423">Row-Level Security</text>
+    <text class="stage-sub" x="955" y="199" text-anchor="middle" fill="#252423">GitHub + Snowflake</text>
+  </g>
+
+  <!-- Power BI -->
+  <g class="pulse" style="color:#F2C811;">
+    <rect class="stage-box" x="1140" y="110" width="220" height="100" fill="#F2C811" stroke="#C7A50D"/>
+    <text class="stage-label" x="1250" y="145" text-anchor="middle" fill="#252423">Power BI</text>
+    <text class="stage-sub" x="1250" y="165" text-anchor="middle" fill="#252423">Executive Dashboards</text>
+    <text class="stage-sub" x="1250" y="182" text-anchor="middle" fill="#252423">Drill-Down Analysis</text>
+  </g>
+
+  <!-- Connector paths -->
+  <path id="path1" d="M200,160 L270,160" class="arrow-line" fill="none"/>
+  <path id="path2" d="M470,160 L540,160" class="arrow-line" fill="none"/>
+  <path id="path3" d="M770,160 L840,160" class="arrow-line" fill="none"/>
+  <path id="path4" d="M1070,160 L1140,160" class="arrow-line" fill="none"/>
+
+  <!-- Flowing data particles -->
+  <circle r="6" fill="#58a6ff">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M200,160 L270,160"/>
+  </circle>
+  <circle r="6" fill="#58a6ff">
+    <animateMotion dur="1.8s" begin="0.4s" repeatCount="indefinite" path="M470,160 L540,160"/>
+  </circle>
+  <circle r="6" fill="#58a6ff">
+    <animateMotion dur="1.8s" begin="0.8s" repeatCount="indefinite" path="M770,160 L840,160"/>
+  </circle>
+  <circle r="6" fill="#58a6ff">
+    <animateMotion dur="1.6s" begin="1.2s" repeatCount="indefinite" path="M1070,160 L1140,160"/>
+  </circle>
+
+  <!-- Bottom labels -->
+  <text x="110" y="250" text-anchor="middle" font-size="12" fill="#8b949e">1 · Ingest</text>
+  <text x="370" y="250" text-anchor="middle" font-size="12" fill="#8b949e">2 · Land &amp; Validate</text>
+  <text x="655" y="250" text-anchor="middle" font-size="12" fill="#8b949e">3 · Transform</text>
+  <text x="955" y="250" text-anchor="middle" font-size="12" fill="#8b949e">4 · Model &amp; Secure</text>
+  <text x="1250" y="250" text-anchor="middle" font-size="12" fill="#8b949e">5 · Visualize</text>
+</svg>
